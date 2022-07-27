@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav_introduce"
+    app:startDestination="@id/mainActivity">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.quitsmokingnow.MainActivity"
+        android:label="activity_first_introduce"
+        tools:layout="@layout/activity_first_introduce" />
+    <activity
+        android:id="@+id/secondIntroduce"
+        android:name="com.example.quitsmokingnow.SecondIntroduce"
+        android:label="activity_second_introduce"
+        tools:layout="@layout/activity_second_introduce" />
+</navigation>
