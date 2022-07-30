@@ -7,4 +7,9 @@ import androidx.room.PrimaryKey
 data class ListReasonQuitSmoking(
     @PrimaryKey(autoGenerate = true) val id: Int?,
     @ColumnInfo(name = "reason") val mReason: String
-)
+
+) {
+    override fun toString(): String {
+        return "ListReasonQuitSmoking(id=$id, mReason='$mReason')"
+    }
+}

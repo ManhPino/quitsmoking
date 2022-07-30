@@ -1,4 +1,4 @@
-package com.example.quitsmokingnow.database
+package com.example.quitsmokingnow.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
