@@ -3,16 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav_introduce"
-    app:startDestination="@id/mainActivity">
-
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.quitsmokingnow.MainActivity"
-        android:label="activity_first_introduce"
-        tools:layout="@layout/activity_first_introduce" />
-    <activity
-        android:id="@+id/secondIntroduce"
-        android:name="com.example.quitsmokingnow.SecondIntroduce"
-        android:label="activity_second_introduce"
-        tools:layout="@layout/activity_second_introduce" />
+    app:startDestination="@id/settingFragment1">
+    <fragment
+        android:id="@+id/settingFragment1"
+        android:name="com.example.quitsmokingnow.SettingFragment1"
+        android:label="fragment_setting_1"
+        tools:layout="@layout/fragment_setting_1" >
+        <action
+            android:id="@+id/action_settingFragment1_to_settingFragment2"
+            app:destination="@id/settingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/defaultIntroduceFragment"
+        android:name="com.example.quitsmokingnow.DefaultIntroduceFragment"
+        android:label="fragment_default_introduce"
+        tools:layout="@layout/fragment_default_introduce" >
+        <action
+            android:id="@+id/action_defaultIntroduceFragment_to_settingFragment1"
+            app:destination="@id/settingFragment1" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment2"
+        android:name="com.example.quitsmokingnow.SettingFragment2"
+        android:label="fragment_setting_2"
+        tools:layout="@layout/fragment_setting_2" />
 </navigation>

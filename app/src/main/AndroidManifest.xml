@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuitSmokingNow">
         <activity
-            android:name=".FirstIntroduce"
+            android:name=".DefaultActivity"
             android:exported="false" />
         <activity
             android:name=".SecondIntroduce"
+            android:exported="false" />
+        <activity
+            android:name=".FirstIntroduce"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

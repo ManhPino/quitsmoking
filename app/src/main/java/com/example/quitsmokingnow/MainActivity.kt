@@ -48,23 +48,21 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initView(){
 
+       // DetaiSmokingDatabase.getDatabase(this)?.mDetailDao()?.deleteAllDetail()
+        
         timeViewModel = ViewModelProvider(this)[TimeViewModel::class.java]
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
         // get list from room-database
         list = DetaiSmokingDatabase.getDatabase(this)?.mDetailDao()?.getAll()!!;
 
-
-
-
         if(list.size == 0){
-           val intent =  Intent(this,FirstIntroduce::class.java);
+           val intent =  Intent(this,DefaultActivity::class.java);
            startActivity(intent);
         }else if(list.size>0){
             Log.d("AAA",list.toString())
 
             startCaculatorTime() // run hour counter with every update is 30 second
-
 
             // call viewmodel and update lên ui ux
             timeViewModel.getTimeViewModel().observe(this,{

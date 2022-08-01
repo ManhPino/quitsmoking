@@ -15,7 +15,7 @@ class ListReasonAdapter: RecyclerView.Adapter<ListReasonAdapter.ListReasonViewHo
     }
     inner class ListReasonViewHolder(val binding: CustomListreasonBinding) : RecyclerView.ViewHolder(binding.root) {
        fun bind(reason:ListReasonQuitSmoking){
-           binding.name.text = "${reason.id}.${reason.mReason}"
+           binding.name.text = " ${reason.mReason}"
        }
     }
 
