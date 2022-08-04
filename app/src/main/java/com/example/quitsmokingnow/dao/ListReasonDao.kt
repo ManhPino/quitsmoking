@@ -15,4 +15,7 @@ interface ListReasonDao {
 
     @Delete
     fun delete(reasonQuitSmoking: ListReasonQuitSmoking)
+
+    @Query("DELETE from table_reason")
+    fun deleteAll();
 }

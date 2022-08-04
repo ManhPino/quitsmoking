@@ -1,6 +1,7 @@
 package com.example.quitsmokingnow
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Build
@@ -9,13 +10,16 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.text.format.DateFormat
 import android.util.Log
-import android.widget.DatePicker
-import android.widget.TimePicker
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.navigation.Navigation
 import com.example.quitsmokingnow.database.DetaiSmokingDatabase
+import com.example.quitsmokingnow.database.ListReasonDatabase
 import com.example.quitsmokingnow.databinding.ActivitySmokingSettingBinding
+import com.example.quitsmokingnow.databinding.LayoutCustomDialogBinding
 import com.example.quitsmokingnow.model.DetailSmokingEntity
+import com.example.quitsmokingnow.model.ListReasonQuitSmoking
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -37,6 +41,7 @@ class SmokingSetting : AppCompatActivity() , DatePickerDialog.OnDateSetListener,
 
     var milis:Long = 0;
     private lateinit var binding: ActivitySmokingSettingBinding;
+    private lateinit var binding_dialog:LayoutCustomDialogBinding;
     private lateinit var  list: List<DetailSmokingEntity>;
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +56,9 @@ class SmokingSetting : AppCompatActivity() , DatePickerDialog.OnDateSetListener,
         }
         binding.update.setOnClickListener{
             updatePrice();
+        }
+        binding.imgReset.setOnClickListener{
+            showDialog();
         }
     }
 
@@ -108,6 +116,29 @@ class SmokingSetting : AppCompatActivity() , DatePickerDialog.OnDateSetListener,
         }
     }
 
+    private fun showDialog() {
+        val dialog = Dialog(this, R.style.DialogStyle)
+        dialog.setContentView(R.layout.layout_custom_dialog)
+        dialog.window!!.setBackgroundDrawableResource(R.drawable.bg_window)
+        val btnClose = dialog.findViewById<ImageView>(R.id.btn_close)
+        val btnYes =  dialog.findViewById<Button>(R.id.btn_yes)
+        val btnNo =  dialog.findViewById<Button>(R.id.btn_no)
+        btnClose.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+       btnYes.setOnClickListener{
+            resetAll();
+       }
+       btnNo.setOnClickListener{
+           dialog.dismiss()
+       }
+    }
+    private fun resetAll(){
+        DetaiSmokingDatabase.getDatabase(this)?.mDetailDao()?.deleteAllDetail()
+        ListReasonDatabase.getDatabase(this)?.mListReasonDAO()?.deleteAll()
+        val intent = Intent(this, DefaultActivity::class.java);
+        startActivity(intent);
+        finish();
+    }
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
         myYear = p1
         myMonth = "${p2+1}"; // month start from 0 to 11 instead of 1->12
