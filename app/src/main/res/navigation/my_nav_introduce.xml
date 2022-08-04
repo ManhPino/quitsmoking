@@ -26,5 +26,21 @@
         android:id="@+id/settingFragment2"
         android:name="com.example.quitsmokingnow.SettingFragment2"
         android:label="fragment_setting_2"
-        tools:layout="@layout/fragment_setting_2" />
+        tools:layout="@layout/fragment_setting_2" >
+        <action
+            android:id="@+id/action_settingFragment2_to_settingFragment3"
+            app:destination="@id/settingFragment3" />
+        <action
+            android:id="@+id/action_settingFragment2_to_settingFragment1"
+            app:destination="@id/settingFragment1" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment3"
+        android:name="com.example.quitsmokingnow.SettingFragment3"
+        android:label="fragment_setting_3"
+        tools:layout="@layout/fragment_setting_3" >
+        <action
+            android:id="@+id/action_settingFragment3_to_settingFragment2"
+            app:destination="@id/settingFragment2" />
+    </fragment>
 </navigation>

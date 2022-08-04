@@ -44,18 +44,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater);
         setContentView(binding.root);
         initView()
+
+        binding.imgSetting.setOnClickListener{
+            var intent = Intent(this,SmokingSetting::class.java);
+            startActivity(intent);
+            finish();
+        }
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initView(){
-
        // DetaiSmokingDatabase.getDatabase(this)?.mDetailDao()?.deleteAllDetail()
-        
+
         timeViewModel = ViewModelProvider(this)[TimeViewModel::class.java]
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
         // get list from room-database
         list = DetaiSmokingDatabase.getDatabase(this)?.mDetailDao()?.getAll()!!;
-
+        Log.d("AAA",list.toString())
         if(list.size == 0){
            val intent =  Intent(this,DefaultActivity::class.java);
            startActivity(intent);
@@ -116,7 +121,6 @@ class MainActivity : AppCompatActivity() {
         var dayquit = days;
         var monney_saved = (price * ciri) / 24 * total_hours;
         var crigated_avoid = ciri / 24 * total_hours;
-
 
 
         binding.dayquits.text = "${dayquit}";

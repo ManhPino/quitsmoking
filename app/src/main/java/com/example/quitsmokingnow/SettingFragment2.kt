@@ -16,6 +16,7 @@ import androidx.navigation.Navigation
 import com.example.quitsmokingnow.databinding.FragmentSetting2Binding
 import com.example.quitsmokingnow.model.DetailSmokingEntity
 import com.example.quitsmokingnow.viewmodel.DetailSmokingViewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -49,7 +50,11 @@ class SettingFragment2 : Fragment(), DatePickerDialog.OnDateSetListener,
         detailSmokingViewModel = ViewModelProvider(this).get(DetailSmokingViewModel::class.java)
         detailSmokingViewModel.getDetailViewModel(activity?.applicationContext!!).observe(viewLifecycleOwner,{
 
-        });
+        })
+        mFulltime = SimpleDateFormat("yyyy-MM-dd HH:mm").format(Date())
+        binding.txtDate.text = SimpleDateFormat("yyyy-MM-dd").format(Date())
+        binding.txtTime.text = SimpleDateFormat("HH:mm").format(Date())
+
         binding.chooseDate.setOnClickListener{
             val calendar: Calendar = Calendar.getInstance()
             val datePickerDialog =
@@ -63,17 +68,7 @@ class SettingFragment2 : Fragment(), DatePickerDialog.OnDateSetListener,
             datePickerDialog.show()
         }
     }
-    private fun insertInforSmoking(){
-         var amount = binding.chooseCrigarettes.value.toString();
-        // var price = binding.price.text.toString().trim()
-        if(mFulltime == null){
-            return;
-        }
-        var detail = DetailSmokingEntity(1,"user_manh",amount,"1000",mFulltime)
-        detailSmokingViewModel.insertData(detail);
-        var intent = Intent(activity,MainActivity::class.java);
-        startActivity(intent);
-    }
+
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
         myYear = p1
         myMonth = "${p2+1}"; // month start from 0 to 11 instead of 1->12
@@ -115,5 +110,13 @@ class SettingFragment2 : Fragment(), DatePickerDialog.OnDateSetListener,
         calendar.set(0,0,0,p1,p2)
 
         mFulltime = "${myYear}-${myMonth}-${myDay} ${myHour}:${myMinute}";
+        binding.txtDate.text = "${myYear}-${myMonth}-${myDay}"
+        binding.txtTime.text = "${myHour}:${myMinute}"
+    }
+    private fun insertInforSmoking(){
+        var amount = binding.chooseCriSmoke.value.toString();
+        var detail = DetailSmokingEntity(1,"user",amount,"",mFulltime)
+        detailSmokingViewModel.insertData(detail);
+        Navigation.findNavController(binding.root).navigate(R.id.action_settingFragment2_to_settingFragment3)
     }
 }

@@ -74,8 +74,6 @@ class SettingFragment1 : Fragment() {
     }
 
     private fun go(){
-        binding.btnGo.setOnClickListener{
-          Navigation.findNavController(binding.root).navigate(R.id.action_settingFragment1_to_settingFragment2);
-        }
+        Navigation.findNavController(binding.root).navigate(R.id.action_settingFragment1_to_settingFragment2);
     }
 }

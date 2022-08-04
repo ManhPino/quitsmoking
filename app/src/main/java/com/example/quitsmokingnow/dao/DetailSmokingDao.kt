@@ -16,4 +16,7 @@ public interface DetailSmokingDao {
 
     @Query("DELETE from table_detail_smoking")
     fun deleteAllDetail();
+
+    @Update()
+    fun update(detail:DetailSmokingEntity);
 }

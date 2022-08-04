@@ -144,13 +144,13 @@
         android:textColor="#00003f"
         android:textSize="23dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/choose_crigarettes"
+        app:layout_constraintBottom_toTopOf="@+id/choose_cri_smoke"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.shawnlin.numberpicker.NumberPicker
-        android:id="@+id/choose_crigarettes"
+        android:id="@+id/choose_cri_smoke"
         android:layout_width="227dp"
         android:layout_height="49dp"
         android:layout_centerInParent="true"
